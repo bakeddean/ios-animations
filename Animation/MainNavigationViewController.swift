@@ -20,7 +20,7 @@ class MainNavigationViewController: UINavigationController {
         
         // Create a long press recognizer that requires two fingers and reverts the navigation back to the
         // main menu.
-        var longPressRecognizer = UILongPressGestureRecognizer(target: self, action: Selector("longPress:"))
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(MainNavigationViewController.longPress(_:)))
         longPressRecognizer.numberOfTouchesRequired = 2
         view.addGestureRecognizer(longPressRecognizer)
     }

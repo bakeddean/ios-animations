@@ -35,7 +35,7 @@ class ModalExampleViewController: ExampleNobelViewController {
     // MARK: - Lifecycle
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var modalVC = segue.destinationViewController as! ModalViewController
+        let modalVC = segue.destinationViewController as! ModalViewController
         modalVC.modalPresentationStyle = .Custom
         modalVC.transitioningDelegate = modalTransitioningDelegate
         

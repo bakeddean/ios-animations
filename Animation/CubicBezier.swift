@@ -12,7 +12,7 @@ class CubicBezier: NSObject {
     
     init(x1: CGFloat, y1: CGFloat, x2: CGFloat, y2: CGFloat) {
         
-        let normalizedPoint = CGPointZero;
+        _ = CGPointZero;
         
         var p1 = CGPointZero
         var p2 = CGPointZero
@@ -49,7 +49,7 @@ class CubicBezier: NSObject {
         var i: Int = 0;
         
         // First try a few iterations of Newton's method -- normally very fast.
-        for (t2 = x, i = 0; i < 8; i++) {
+        for (t2 = x, i = 0; i < 8; i += 1) {
             x2 = sampleCurveX(t2) - x
             if (fabs(x2) < epsilon) {
                 return t2;

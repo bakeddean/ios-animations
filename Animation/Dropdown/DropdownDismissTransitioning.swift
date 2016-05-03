@@ -18,7 +18,7 @@ class DropdownDismissTransitioning: NSObject, UIViewControllerAnimatedTransition
         let from = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! DropdownViewController
 
         let container = transitionContext.containerView()
-        let duration = transitionDuration(transitionContext)
+        _ = transitionDuration(transitionContext)
         
         container!.insertSubview(to.view, atIndex: 0)
 

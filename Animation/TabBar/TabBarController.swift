@@ -81,7 +81,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         indicatorView3?.backgroundColor = MotionStyleKit.motion_DarkColor
         indicatorView3?.layer.transform = CATransform3DMakeTranslation(0, 60, 0)
         
-        previousItem = tabBar.items![0] as? UITabBarItem
+        previousItem = tabBar.items![0] as UITabBarItem
         
         indicatorContainerView.addSubview(indicatorView1!)
         indicatorContainerView.addSubview(indicatorView2!)
@@ -134,17 +134,15 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         var toIndex = 0
         
         for index in 0...viewControllers!.count - 1 {
-            
-            if viewControllers![index] as! UIViewController == fromVC {
+            if viewControllers![index] == fromVC {
                 fromIndex = index
             }
-            if viewControllers![index] as! UIViewController == toVC {
+            if viewControllers![index] == toVC {
                 toIndex = index
             }
         }
         
         return TabBarExampleAnimatedTransitioning(fromIndex: fromIndex, toIndex: toIndex)
-        
     }
     
 }

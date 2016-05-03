@@ -111,11 +111,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDat
     // navigation controller.
     func showView(storyboard: String, viewControllerID: String) {
         let sb = UIStoryboard(name: storyboard, bundle: nil)
-        let vc = sb.instantiateViewControllerWithIdentifier(viewControllerID) as! UIViewController
+        let vc = sb.instantiateViewControllerWithIdentifier(viewControllerID)
         
         if vc is UINavigationController {
-            var nav = vc as! UINavigationController
-            var view = nav.viewControllers.first! as UIViewController
+            let nav = vc as! UINavigationController
+            let view = nav.viewControllers.first! as UIViewController
             self.navigationController?.pushViewController(view, animated: true)
         } else {
             self.navigationController?.pushViewController(vc, animated: true)

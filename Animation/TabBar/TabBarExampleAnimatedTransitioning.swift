@@ -26,20 +26,19 @@ class TabBarExampleAnimatedTransitioning: NSObject, UIViewControllerAnimatedTran
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        
         let to = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)! as UIViewController
         let from = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)! as UIViewController
         
         let container = transitionContext.containerView()
-        let duration = transitionDuration(transitionContext)
+        _ = transitionDuration(transitionContext)
         
         container!.addSubview(to.view)
         
-        var direction = toIndex > fromIndex ? CGFloat(-1) : CGFloat(1)
+        _ = toIndex > fromIndex ? CGFloat(-1) : CGFloat(1)
 
-        if let toPeople = to as? TabBarPeopleViewController {
+        if let _ = to as? TabBarPeopleViewController {
             to.view.transform = CGAffineTransformMakeTranslation(0, to.view.bounds.height)
-        } else if let fromPeople = from as? TabBarPeopleViewController {
+        } else if let _ = from as? TabBarPeopleViewController {
             to.view.alpha = 1.0
             container!.addSubview(from.view)
         } else {
@@ -48,7 +47,6 @@ class TabBarExampleAnimatedTransitioning: NSObject, UIViewControllerAnimatedTran
         }
         
         UIView.animateWithDuration(animMultiplier * transitionDuration(transitionContext), delay: animMultiplier * 0.0, options: [], animations: { () -> Void in
-            
             to.view.alpha = 1.0
             to.view.transform = CGAffineTransformIdentity
             
@@ -57,7 +55,6 @@ class TabBarExampleAnimatedTransitioning: NSObject, UIViewControllerAnimatedTran
             }
             
         }) { finished in
-            
             to.view.transform = CGAffineTransformIdentity
             from.view.transform = CGAffineTransformIdentity
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled())

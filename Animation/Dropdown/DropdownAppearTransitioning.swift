@@ -17,7 +17,7 @@ class DropdownAppearTransitioning: NSObject, UIViewControllerAnimatedTransitioni
         let to = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! DropdownViewController
         
         let container = transitionContext.containerView()
-        let duration = transitionDuration(transitionContext)
+        _ = transitionDuration(transitionContext)
         
         container!.addSubview(to.view)
         

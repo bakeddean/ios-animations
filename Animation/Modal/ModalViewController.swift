@@ -53,8 +53,8 @@ class ModalViewController: UIViewController, UITableViewDelegate {
         
         loader.animationImages = [UIImage]()
         
-        for var index = 100; index < 147; index++ {
-            var frameName = String(format: "Loader_00%03d", index)
+        for index in 100 ..< 147 {
+            let frameName = String(format: "Loader_00%03d", index)
             loader.animationImages?.append(UIImage(named:frameName)!)
         }
         
@@ -123,7 +123,7 @@ class ModalViewController: UIViewController, UITableViewDelegate {
     
     func show(completion: () -> Void ) {
     
-        var animationDuration = Double(self.animationMultiplier) * 1 / 3.0;
+        let animationDuration = Double(self.animationMultiplier) * 1 / 3.0;
         
         backgroundView.alpha = 0
         loaderBG.alpha = 1
@@ -135,8 +135,8 @@ class ModalViewController: UIViewController, UITableViewDelegate {
         }, completion: { finished in
             // display PDF
             // first string value is pdf file name
-            var pdfLoc = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("Bee", ofType:"pdf")!)
-            var request = NSURLRequest(URL: pdfLoc)
+            let pdfLoc = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("Bee", ofType:"pdf")!)
+            let request = NSURLRequest(URL: pdfLoc)
             self.pdfView.loadRequest(request);
             self.pdfView.alpha = 0
             self.pdfView.transform = CGAffineTransformMakeScale(0.75, 0.75)
@@ -157,12 +157,12 @@ class ModalViewController: UIViewController, UITableViewDelegate {
             
         })
         
-        var timer = LayoutConstraintAnimator(constraint: self.modalBackgroundTop, delay: 0, duration: animationDuration, toConstant: CGFloat(0), easing: LayoutConstraintEasing.Bezier(x1: 0.5, y1: 0.08, x2: 0.0, y2: 1.0), completion: completion)
+        _ = LayoutConstraintAnimator(constraint: self.modalBackgroundTop, delay: 0, duration: animationDuration, toConstant: CGFloat(0), easing: LayoutConstraintEasing.Bezier(x1: 0.5, y1: 0.08, x2: 0.0, y2: 1.0), completion: completion)
     }
     
     func hide(completion: () -> Void ) {
         
-        var animationDuration = Double(self.animationMultiplier) * 1 / 4.0;
+        let animationDuration = Double(self.animationMultiplier) * 1 / 4.0;
         
         self.view.layoutIfNeeded()
         
@@ -170,7 +170,7 @@ class ModalViewController: UIViewController, UITableViewDelegate {
             self.backgroundView.alpha = 0
         })
         
-        var timer = LayoutConstraintAnimator(constraint: self.modalBackgroundTop, delay: 0, duration: animationDuration, toConstant: (UIScreen.mainScreen().bounds.size.height + 10), easing: LayoutConstraintEasing.Bezier(x1: 0.5, y1: 0.08, x2: 0.0, y2: 1.0)) { finished in
+        _ = LayoutConstraintAnimator(constraint: self.modalBackgroundTop, delay: 0, duration: animationDuration, toConstant: (UIScreen.mainScreen().bounds.size.height + 10), easing: LayoutConstraintEasing.Bezier(x1: 0.5, y1: 0.08, x2: 0.0, y2: 1.0)) { finished in
             
             self.modalPressed?(index:0)
             completion()

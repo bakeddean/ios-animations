@@ -17,7 +17,7 @@ class ModalAppearTransitioning: NSObject, UIViewControllerAnimatedTransitioning 
         let to = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! ModalViewController
         
         let container = transitionContext.containerView()
-        let duration = transitionDuration(transitionContext)
+        _ = transitionDuration(transitionContext)
         
         container!.addSubview(to.view)
         
