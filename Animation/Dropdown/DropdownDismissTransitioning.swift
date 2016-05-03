@@ -8,7 +8,7 @@ This licensed material is licensed under the Apache 2.0 license. http://www.apac
 
 class DropdownDismissTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.8
     }
     
@@ -20,7 +20,7 @@ class DropdownDismissTransitioning: NSObject, UIViewControllerAnimatedTransition
         let container = transitionContext.containerView()
         let duration = transitionDuration(transitionContext)
         
-        container.insertSubview(to.view, atIndex: 0)
+        container!.insertSubview(to.view, atIndex: 0)
 
         from.hide() {
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled())

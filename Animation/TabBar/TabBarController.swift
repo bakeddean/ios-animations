@@ -46,16 +46,16 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.frame = rect
         
         // set the default and selected icon for each tab bar item
-        (self.tabBar.items?[0] as! UITabBarItem).image = UIImage(named: "dashboard_green")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        (self.tabBar.items?[0] as! UITabBarItem).selectedImage = UIImage(named: "dashboard_white")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        (self.tabBar.items?[1] as! UITabBarItem).image = UIImage(named: "stats_green")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        (self.tabBar.items?[1] as! UITabBarItem).selectedImage = UIImage(named: "stats_white")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        (self.tabBar.items?[2] as! UITabBarItem).image = UIImage(named: "contacts_green")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        (self.tabBar.items?[2] as! UITabBarItem).selectedImage = UIImage(named: "contacts_white")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        ((self.tabBar.items?[0])! as UITabBarItem).image = UIImage(named: "dashboard_green")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        ((self.tabBar.items?[0])! as UITabBarItem).selectedImage = UIImage(named: "dashboard_white")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        ((self.tabBar.items?[1])! as UITabBarItem).image = UIImage(named: "stats_green")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        ((self.tabBar.items?[1])! as UITabBarItem).selectedImage = UIImage(named: "stats_white")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        ((self.tabBar.items?[2])! as UITabBarItem).image = UIImage(named: "contacts_green")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        ((self.tabBar.items?[2])! as UITabBarItem).selectedImage = UIImage(named: "contacts_white")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         
         let indicatorContainerView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 60))
         indicatorContainerView.backgroundColor = MotionStyleKit.motion_Color
-        indicatorContainerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        indicatorContainerView.translatesAutoresizingMaskIntoConstraints = false
         
         view.sendSubviewToBack(indicatorContainerView)
         view.addSubview(indicatorContainerView)

@@ -57,7 +57,7 @@ class DropdownViewController: UIViewController, UITableViewDataSource, UITableVi
     ];
     
     var delegate:DropDownViewControllerDelegate?
-    var reversedAnimationImages: [UIImage] { get { return reverse(animationImages) } }
+    var reversedAnimationImages: [UIImage] { get { return animationImages.reverse() } }
     var tableHeight: CGFloat { get { return CGFloat(cellHeight * numberOfCells) } }
     var dropdownPressed: ((index: Int) -> Void)?
     var isOpen = false
@@ -87,10 +87,10 @@ class DropdownViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         let easing = LayoutConstraintEasing.Bezier(x1: 0.5, y1: 0.08, x2: 0.0, y2: 1.0)
-        LayoutConstraintAnimator(constraint: self.optionsTop, delay: 0,
+        let _ = LayoutConstraintAnimator(constraint: self.optionsTop, delay: 0,
             duration: animationDuration, toConstant: CGFloat(0), easing: easing,
             completion: nil)
-        LayoutConstraintAnimator(constraint: self.optionsBottom, delay: 0,
+        let _ = LayoutConstraintAnimator(constraint: self.optionsBottom, delay: 0,
             duration: animationDuration, toConstant: dropdownBottom,
             easing: easing, completion: nil)
     }
@@ -100,10 +100,10 @@ class DropdownViewController: UIViewController, UITableViewDataSource, UITableVi
         let easing = LayoutConstraintEasing.Bezier(x1: 0.5, y1: 0.08, x2: 0.0, y2: 1.0)
         let constant = UIScreen.mainScreen().bounds.size.height
         
-        LayoutConstraintAnimator(constraint: self.optionsTop, delay: 0,
+        let _ = LayoutConstraintAnimator(constraint: self.optionsTop, delay: 0,
             duration: animationDuration, toConstant: -constant, easing: easing,
             completion: nil)
-        LayoutConstraintAnimator(constraint: self.optionsBottom, delay: 0,
+        let _ = LayoutConstraintAnimator(constraint: self.optionsBottom, delay: 0,
             duration: animationDuration, toConstant: constant, easing: easing,
             completion: nil)
     }
@@ -126,7 +126,7 @@ class DropdownViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("DropdownOptionCell") as! DropdownOptionCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("DropdownOptionCell") as! DropdownOptionCell
         
         cell.label.text = "Option \(indexPath.row + 1)"
         

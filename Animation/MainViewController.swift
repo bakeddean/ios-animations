@@ -115,7 +115,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITableViewDat
         
         if vc is UINavigationController {
             var nav = vc as! UINavigationController
-            var view = nav.viewControllers.first as! UIViewController
+            var view = nav.viewControllers.first! as UIViewController
             self.navigationController?.pushViewController(view, animated: true)
         } else {
             self.navigationController?.pushViewController(vc, animated: true)

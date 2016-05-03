@@ -15,7 +15,7 @@ This licensed material is licensed under the Apache 2.0 license. http://www.apac
 
 class LayoutConstraintAnimator: NSObject {
     
-    internal lazy var link: CADisplayLink = CADisplayLink(target: self, selector: Selector("timer"))
+    internal lazy var link: CADisplayLink = CADisplayLink(target: self, selector: #selector(LayoutConstraintAnimator.timer))
     internal var startTime: Double
     internal var fromConstants: [CGFloat]
     internal var delaying: Bool
@@ -87,11 +87,11 @@ class LayoutConstraintAnimator: NSObject {
             }
         }
         
-        var time = CGFloat((CACurrentMediaTime() - startTime) / duration)
+        let time = CGFloat((CACurrentMediaTime() - startTime) / duration)
         
         // check to see if the animation has completed
         if time >= 1 {
-            for (index, constraint) in enumerate(constraints) {
+            for (index, constraint) in constraints.enumerate() {
                 constraint.constant = toConstants[index]
             }
             
@@ -106,9 +106,9 @@ class LayoutConstraintAnimator: NSObject {
         }
         
         // process the animation
-        var t = easing.valueFor(CGFloat(time))
+        let t = easing.valueFor(CGFloat(time))
         
-        for (index, constraint) in enumerate(constraints) {
+        for (index, constraint) in constraints.enumerate() {
             constraint.constant = (1 - t) * fromConstants[index] + t * toConstants[index]
         }
     }

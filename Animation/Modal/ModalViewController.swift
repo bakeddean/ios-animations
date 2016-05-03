@@ -136,16 +136,16 @@ class ModalViewController: UIViewController, UITableViewDelegate {
             // display PDF
             // first string value is pdf file name
             var pdfLoc = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("Bee", ofType:"pdf")!)
-            var request = NSURLRequest(URL: pdfLoc!);
+            var request = NSURLRequest(URL: pdfLoc)
             self.pdfView.loadRequest(request);
             self.pdfView.alpha = 0
             self.pdfView.transform = CGAffineTransformMakeScale(0.75, 0.75)
             
             // show PDF
-            UIView.animateWithDuration(animationDuration, delay: 1.5, options: nil, animations: { () -> Void in
+            UIView.animateWithDuration(animationDuration, delay: 1.5, options: [], animations: { () -> Void in
                     self.loader.alpha = 0 // fade out loader
                 }, completion: { finished in
-                    UIView.animateWithDuration(0.25, delay: 0, options: nil, animations: { () -> Void in
+                    UIView.animateWithDuration(0.25, delay: 0, options: [], animations: { () -> Void in
                             // fade in PDF
                             self.loaderBG.alpha = 0
                             self.pdfView.alpha = 1

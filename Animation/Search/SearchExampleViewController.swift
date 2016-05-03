@@ -60,13 +60,13 @@ class SearchExampleViewController: ExampleNobelViewController, UITextFieldDelega
         xButton.hidden = true
         
         self.prepareLoader()
-        self.searchField.addTarget(self, action: "textChanged", forControlEvents: .EditingChanged)
+        self.searchField.addTarget(self, action: #selector(SearchExampleViewController.textChanged), forControlEvents: .EditingChanged)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(SearchExampleViewController.handleSingleTap(_:)))
         tapRecognizer.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tapRecognizer)
     }
@@ -81,8 +81,8 @@ class SearchExampleViewController: ExampleNobelViewController, UITextFieldDelega
         loader.animationImages = [UIImage]()
         
         // grabs the animation frames from the bundle
-        for var index = 100; index < 147; index++ {
-            var frameName = String(format: "Loader_00%03d", index)
+        for index in 100 ..< 147 {
+            let frameName = String(format: "Loader_00%03d", index)
             loader.animationImages?.append(UIImage(named:frameName)!)
         }
         
@@ -179,7 +179,7 @@ class SearchExampleViewController: ExampleNobelViewController, UITextFieldDelega
         let animationDelay: NSTimeInterval = 0
 
         UIView.animateWithDuration(animationDuration, delay: animationDelay,
-            options: nil, animations: { () -> Void in
+            options: [], animations: { () -> Void in
             self.itemsView.alpha = 1.0
             self.tableView.alpha = 1.0
         }, completion: nil)
@@ -194,7 +194,7 @@ class SearchExampleViewController: ExampleNobelViewController, UITextFieldDelega
         let toValues: [CGFloat] = [30, 40, 0]
         let animationDuration: NSTimeInterval = Double(animMultiplier * 0.2)
         
-        LayoutConstraintAnimator(constraints: constraintsToAnimate, delay: 0,
+        let _ = LayoutConstraintAnimator(constraints: constraintsToAnimate, delay: 0,
             duration: animationDuration, toConstants: toValues,
             easing: LayoutConstraintEasing.EaseInOut, completion: nil)
         
@@ -216,8 +216,8 @@ class SearchExampleViewController: ExampleNobelViewController, UITextFieldDelega
         let animationDuration: Double = Double(animMultiplier * 0.3)
         let animationDelay: NSTimeInterval = 0
         
-        LayoutConstraintAnimator(constraints: constraintsToAnimate,
-            delay: 0, duration: animationDuration, toConstants: toValues,
+        let _ = LayoutConstraintAnimator(constraints: constraintsToAnimate,
+            delay: animationDelay, duration: animationDuration, toConstants: toValues,
             easing: LayoutConstraintEasing.EaseInOut, completion: nil)
         
         UIView.animateWithDuration(Double(self.animMultiplier) * 0.3, animations: { () -> Void in
@@ -243,21 +243,21 @@ class SearchExampleViewController: ExampleNobelViewController, UITextFieldDelega
     // MARK: - Text Field
     
     func textChanged() -> Void {
-        self.xButton.hidden = count(self.searchField.text) == 0
+        self.xButton.hidden = self.searchField.text?.characters.count == 0
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
         self.collapseHeader()
         
-        self.xButton.hidden = count(textField.text) == 0
+        self.xButton.hidden = textField.text?.characters.count == 0
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if count(textField.text) < 2 {
+        if textField.text?.characters.count < 2 {
             return false
         }
         
-        search(textField.text)
+        search(textField.text!)
         
         return true
     }

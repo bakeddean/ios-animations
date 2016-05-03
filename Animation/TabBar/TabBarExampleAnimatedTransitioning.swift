@@ -21,7 +21,7 @@ class TabBarExampleAnimatedTransitioning: NSObject, UIViewControllerAnimatedTran
         super.init()
     }
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.4
     }
     
@@ -33,7 +33,7 @@ class TabBarExampleAnimatedTransitioning: NSObject, UIViewControllerAnimatedTran
         let container = transitionContext.containerView()
         let duration = transitionDuration(transitionContext)
         
-        container.addSubview(to.view)
+        container!.addSubview(to.view)
         
         var direction = toIndex > fromIndex ? CGFloat(-1) : CGFloat(1)
 
@@ -41,13 +41,13 @@ class TabBarExampleAnimatedTransitioning: NSObject, UIViewControllerAnimatedTran
             to.view.transform = CGAffineTransformMakeTranslation(0, to.view.bounds.height)
         } else if let fromPeople = from as? TabBarPeopleViewController {
             to.view.alpha = 1.0
-            container.addSubview(from.view)
+            container!.addSubview(from.view)
         } else {
             from.view.alpha = 1.0
             to.view.alpha = 0.0
         }
         
-        UIView.animateWithDuration(animMultiplier * transitionDuration(transitionContext), delay: animMultiplier * 0.0, options: nil, animations: { () -> Void in
+        UIView.animateWithDuration(animMultiplier * transitionDuration(transitionContext), delay: animMultiplier * 0.0, options: [], animations: { () -> Void in
             
             to.view.alpha = 1.0
             to.view.transform = CGAffineTransformIdentity

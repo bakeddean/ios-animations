@@ -8,7 +8,7 @@ This licensed material is licensed under the Apache 2.0 license. http://www.apac
 
 class ModalAppearTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
    
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.8
     }
     
@@ -19,7 +19,7 @@ class ModalAppearTransitioning: NSObject, UIViewControllerAnimatedTransitioning 
         let container = transitionContext.containerView()
         let duration = transitionDuration(transitionContext)
         
-        container.addSubview(to.view)
+        container!.addSubview(to.view)
         
         to.show() {
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled())

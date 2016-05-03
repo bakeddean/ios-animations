@@ -36,17 +36,17 @@ class ExampleNobelViewController: UIViewController, UITableViewDataSource, UITab
     
     func loadData() {
         let bundle = NSBundle.mainBundle()
-        var error:NSError?
         
         let path1 = bundle.pathForResource("nobels_alphabetically", ofType: "json")
-        var data1:NSData = NSData(contentsOfFile: path1!)!
-        let json1:AnyObject = NSJSONSerialization.JSONObjectWithData(data1, options: NSJSONReadingOptions.AllowFragments, error:&error)!
+        let data1:NSData = NSData(contentsOfFile: path1!)!
+        
+        guard let json1:AnyObject = try? NSJSONSerialization.JSONObjectWithData(data1, options: .AllowFragments) else { return }
         
         nobelsAlphabetically = json1 as? NSArray
       
         let path2 = bundle.pathForResource("nobels_by_discipline", ofType: "json")
-        var data2:NSData = NSData(contentsOfFile: path2!)!
-        let json2:AnyObject = NSJSONSerialization.JSONObjectWithData(data2, options: NSJSONReadingOptions.AllowFragments, error:&error)!
+        let data2:NSData = NSData(contentsOfFile: path2!)!
+        guard let json2:AnyObject = try?  NSJSONSerialization.JSONObjectWithData(data2, options: .AllowFragments) else { return }
         
         nobelsByDiscipline = json2 as? NSArray
         
@@ -79,11 +79,11 @@ class ExampleNobelViewController: UIViewController, UITableViewDataSource, UITab
                     
                     let array = section["Data"] as? NSArray
                     
-                    var nobel_dict = NSMutableDictionary()
+                    let nobel_dict = NSMutableDictionary()
                     
                     nobel_dict["Section"] = section["Section"]
                     
-                    var nobel_array = NSMutableArray()
+                    let nobel_array = NSMutableArray()
                     
                     if let array = array {
                         

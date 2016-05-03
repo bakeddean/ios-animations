@@ -44,7 +44,7 @@ class DropdownExampleViewController: ExampleNobelViewController, DropDownViewCon
         UIImage(named: "circle_x_06")!,
         UIImage(named: "circle_x_07")!
     ];
-    var reversedAnimationImages: [UIImage] { get { return reverse(animationImages) } }
+    var reversedAnimationImages: [UIImage] { get { return animationImages.reverse() } }
     
     var hiddenStatusBar:Bool = false {
         didSet {
@@ -89,16 +89,16 @@ class DropdownExampleViewController: ExampleNobelViewController, DropDownViewCon
     
     func show(completion: () -> Void) {
         dropdownButtonImage.animationImages = self.animationImages;
-        dropdownButtonImage.image = dropdownButtonImage.animationImages?.last as? UIImage
+        dropdownButtonImage.image = (dropdownButtonImage.animationImages?.last)! as UIImage
         dropdownButtonImage.startAnimating()
 
         let delay = dropdownButtonImage.animationDuration * Double(NSEC_PER_SEC)
-        var time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue(), { () -> Void in
             self.dropdownButtonImage.stopAnimating()
         })
         
-        var animationDuration = Double(self.animationMultiplier) * 1 / 2.5;
+        let animationDuration = Double(self.animationMultiplier) * 1 / 2.5;
         
         UIView.animateWithDuration(animationDuration, animations: { () -> Void in
             self.backgroundView.alpha = 1
@@ -108,16 +108,16 @@ class DropdownExampleViewController: ExampleNobelViewController, DropDownViewCon
     
     func hide(completion: () -> Void ) {
         dropdownButtonImage.animationImages = self.reversedAnimationImages
-        dropdownButtonImage.image = dropdownButtonImage.animationImages?.last as? UIImage
+        dropdownButtonImage.image = (dropdownButtonImage.animationImages?.last)! as UIImage
         dropdownButtonImage.startAnimating()
         
         let delay = dropdownButtonImage.animationDuration * Double(NSEC_PER_SEC)
-        var time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue(), { () -> Void in
             self.dropdownButtonImage.stopAnimating()
         })
         
-        var animationDuration = Double(self.animationMultiplier) * 1 / 2.5;
+        let animationDuration = Double(self.animationMultiplier) * 1 / 2.5;
         
         UIView.animateWithDuration(animationDuration, animations: { () -> Void in
             self.backgroundView.alpha = 0
